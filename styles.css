@@ -1,0 +1,165 @@
+/* Estilos generales para el cuerpo de la página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1e2a3a;
+    margin: 0;
+    padding: 20px;
+    color: #ecf0f1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+}
+
+/* Estilo para el título principal */
+h1 {
+    font-size: 48px;
+    color: transparent;
+    background: linear-gradient(45deg, #16a085, #1abc9c);
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-align: center;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: bold;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilo para las secciones de bloques */
+.block-section {
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 40px;
+}
+
+/* Título de cada sección de bloques */
+.block-section h2 {
+    font-size: 32px;
+    color: #16a085;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo para cada bloque */
+.block-item {
+    background-color: #34495e;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.block-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos para los párrafos dentro de los bloques */
+.block-item p {
+    font-size: 16px;
+    color: #bdc3c7;
+    margin: 12px 0;
+    line-height: 1.6;
+}
+
+/* Estilo para los encabezados dentro de los bloques */
+.block-item h4 {
+    color: #ecf0f1;
+    font-size: 18px;
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Estilo para las listas dentro de los bloques */
+.block-item ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+/* Estilo para cada elemento de la lista */
+.block-item li {
+    font-size: 14px;
+    margin: 8px 0;
+    color: #bdc3c7;
+    display: flex;
+    align-items: center;
+}
+
+.block-item li .file-link {
+    display: flex;
+    align-items: center;
+    color: #1abc9c;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.block-item li .file-link:hover {
+    color: #16a085;
+    text-decoration: underline;
+}
+
+/* Estilo para los íconos de archivo junto a los enlaces */
+.block-item .file-link::before {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+/* Estilos para los emojis según el tipo de archivo */
+.block-item .file-link[data-file*='.pdf']::before {
+    content: '📄'; /* Emoji de documento */
+}
+
+.block-item .file-link[data-file*='.mpeg']::before,
+.block-item .file-link[data-file*='.wav']::before {
+    content: '🎵'; /* Emoji de audio */
+}
+
+.block-item .file-link[data-file*='.mp4']::before,
+.block-item .file-link[data-file*='.mkv']::before {
+    content: '🎬'; /* Emoji de video */
+}
+
+/* Estilos para los enlaces de Google Drive */
+.block-item a {
+    font-size: 14px;
+    color: #1abc9c;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.block-item a:hover {
+    color: #16a085;
+    text-decoration: underline;
+}
+
+/* Media Query para hacerlo responsivo */
+@media (max-width: 768px) {
+    .block-item {
+        padding: 20px;
+        margin-bottom: 15px;
+    }
+
+    .block-section {
+        padding: 0 20px;
+    }
+
+    .block-item h4 {
+        font-size: 16px;
+    }
+
+    .block-item p {
+        font-size: 14px;
+    }
+
+    .block-item li {
+        font-size: 12px;
+    }
+}
