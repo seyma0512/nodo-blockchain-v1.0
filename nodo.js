@@ -223,19 +223,29 @@ app.post('/receive-data', upload.array('file'), async (req, res) => {
 app.get('/get-blocks', async (req, res) => {
     const db = getDB();
     
-    // Obtener los últimos bloques subidos por el nodo 'nodo-security-blockchain-3001'
+    // Tipos de bloques a obtener
     const blockTypes = ['block_pdf', 'block_pdf_audio', 'block_pdf_video', 'block_pdf_audio_video'];
     
     try {
         const blocks = {};
 
         for (const type of blockTypes) {
-            const latestBlocks = await db.collection(type).find({ node: 'nodo-security-blockchain-3001' })
-                .sort({ height: -1 }) // Obtener los más recientes
-                .limit(5) // Limitar la cantidad de bloques mostrados
+            // Buscar los bloques más recientes por tipo
+            const latestBlock = await db.collection(type).find({ node: 'nodo-security-blockchain-3001' })
+                .sort({ height: -1 })  // Ordenar por altura descendente
+                .limit(1)  // Obtener solo el último bloque
                 .toArray();
-            
-            blocks[type] = latestBlocks;
+
+            if (latestBlock.length === 0) {
+                // Si no hay bloques con el nodo específico, buscar el siguiente que sí tenga el nodo
+                const fallbackBlock = await db.collection(type).find({ node: { $exists: true } })
+                    .sort({ height: -1 })  // Ordenar por altura descendente
+                    .limit(1)  // Obtener el siguiente bloque
+                    .toArray();
+                blocks[type] = fallbackBlock;
+            } else {
+                blocks[type] = latestBlock;
+            }
         }
 
         res.json(blocks);
