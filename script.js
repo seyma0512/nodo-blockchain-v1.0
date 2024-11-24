@@ -79,5 +79,8 @@ async function loadBlocks() {
     }
 }
 
-// Cargar los bloques cuando se cargue la página
+// Cargar los bloques inicialmente
 loadBlocks();
+
+// Recargar los bloques automáticamente cada 30 segundos
+setInterval(loadBlocks, 30000); // 30000 ms = 30 segundos
