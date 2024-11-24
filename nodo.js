@@ -14,10 +14,7 @@ const PORT = 3001;
 
 // Usar CORS después de inicializar app
 app.use(cors({
-    origin: [
-        'https://nodo-blockchain-v1-0.onrender.com',
-        'https://blockchain-v2-1.onrender.com'  // Origen del servidor 1
-    ],
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
