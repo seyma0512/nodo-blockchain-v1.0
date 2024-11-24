@@ -14,17 +14,27 @@ body {
 
 /* Estilo para el título principal */
 h1 {
-    font-size: 48px;
-    color: transparent;
-    background: linear-gradient(45deg, #16a085, #1abc9c);
-    background-clip: text;
-    -webkit-background-clip: text;
+    font-size: 52px;
+    color: #1abc9c; /* Cambio a color sólido para el título */
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 5px;
     font-weight: bold;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4); /* Sombra sutil para dar profundidad */
+    position: relative;
+    animation: slideIn 1s ease-out;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 /* Sección de bloques */
@@ -35,20 +45,22 @@ h1 {
     padding: 20px; /* Añadir padding para separar los bloques */
     background-color: rgba(52, 152, 219, 0.1); /* Fondo sutil para las secciones */
     border-radius: 10px;
+    border: 1px solid rgba(52, 152, 219, 0.3); /* Añadir un borde sutil */
 }
 
 /* Título de cada sección de bloques */
 .block-section h2 {
-    font-size: 32px;
+    font-size: 34px;
     color: #16a085;
     text-align: center;
     margin-bottom: 20px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Estilo para cada bloque */
 .block-item {
     background-color: #34495e;
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 25px;
     margin-bottom: 20px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra más suave y destacada */
@@ -92,17 +104,21 @@ h1 {
     color: #bdc3c7;
     display: flex;
     align-items: center;
-    padding: 5px 0;
-    border-bottom: 1px solid #ecf0f1; /* Línea sutil para separar los archivos */
+    padding: 8px 0;
+    transition: background-color 0.2s ease;
 }
 
-/* Estilo para los enlaces de archivos */
+.block-item li:hover {
+    background-color: rgba(26, 188, 156, 0.1); /* Fondo sutil al pasar el mouse */
+}
+
+/* Estilo para los enlaces de archivos (sin línea entre ellos) */
 .block-item li .file-link {
     display: flex;
     align-items: center;
     color: #1abc9c;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 16px; /* Mayor tamaño de fuente para mejor visibilidad */
     font-weight: 500;
     transition: color 0.3s ease;
     padding: 10px 15px; /* Asegurarse de que el enlace tenga espacio */
@@ -111,14 +127,14 @@ h1 {
 
 .block-item li .file-link:hover {
     color: #16a085;
-    background-color: rgba(26, 188, 156, 0.1); /* Fondo sutil al hacer hover */
+    background-color: rgba(26, 188, 156, 0.2); /* Fondo sutil al hacer hover */
     text-decoration: underline;
 }
 
 /* Estilos para los íconos de archivo junto a los enlaces */
 .block-item .file-link::before {
     margin-right: 10px;
-    font-size: 18px;
+    font-size: 22px; /* Aumento en el tamaño de los íconos */
 }
 
 /* Estilos para los emojis según el tipo de archivo */
@@ -155,13 +171,16 @@ h1 {
 
 /* Media Query para hacerlo responsivo */
 @media (max-width: 768px) {
-    .block-item {
-        padding: 20px;
-        margin-bottom: 15px;
+    body {
+        padding: 10px;
     }
 
     .block-section {
-        padding: 0 20px;
+        padding: 0 15px;
+    }
+
+    .block-item {
+        padding: 18px;
     }
 
     .block-item h4 {
@@ -174,5 +193,9 @@ h1 {
 
     .block-item li {
         font-size: 12px;
+    }
+
+    .block-item li .file-link {
+        font-size: 15px;
     }
 }
