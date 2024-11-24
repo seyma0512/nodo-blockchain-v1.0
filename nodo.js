@@ -125,14 +125,19 @@ app.post('/receive-data', upload.array('file'), async (req, res) => {
     console.log('Datos recibidos:', req.body);
     console.log('Archivos recibidos:', req.files);
 
-    // Verificar que los archivos y metadatos sean enviados
+    // Verificar que los datos esenciales sean enviados
+    if (!name || !description || !location || !incidentType || !chain || !userId || !digitalSignature) {
+        console.log('Faltan datos esenciales');
+        return res.status(400).json({
+            success: false,
+            message: 'Faltan datos esenciales para crear el bloque (name, description, location, incidentType, chain, userId, digitalSignature)',
+        });
+    }
+
+    // Verificar que se envíen archivos
     if (!req.files || req.files.length === 0) {
         console.log('No se recibieron archivos');
         return res.status(400).json({ success: false, message: 'No se recibieron archivos' });
-    }
-    if (!userId || !digitalSignature) {
-        console.log('Faltan los parámetros userId o digitalSignature');
-        return res.status(400).json({ success: false, message: 'userId o digitalSignature no proporcionados' });
     }
 
     const previousHash = await getPreviousHash(chain);
